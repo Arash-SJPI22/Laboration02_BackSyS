@@ -14,13 +14,28 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    List<Category> getAll() {
-        return categoryRepository.findAll();
+    List<CategoryDto> getAll() {
+        return categoryRepository.findAll()
+                .stream()
+                .map(CategoryDto::new)
+                .toList();
     }
 
-    Optional<Category> getOneCategoryByName(String category) {
+    Optional<CategoryDto> getOneCategoryByName(String category) {
+        return mapCategoryDto(Optional.ofNullable(categoryRepository.findCategoryByName(category)));
+    }
+
+    static Optional<CategoryDto> mapCategoryDto(Optional<Category> category) {
         if (category.isEmpty())
             return Optional.empty();
-        return Optional.ofNullable(categoryRepository.findCategoryByName(category));
+        var newCategory = category.get();
+        return Optional.of(new CategoryDto(newCategory));
+    }
+
+    public Optional<Category> createNewCategory(Category category) {
+        if (categoryRepository.existsCategoryByName(category.getName()))
+            return Optional.empty();
+
+        return Optional.of(categoryRepository.save(category));
     }
 }
