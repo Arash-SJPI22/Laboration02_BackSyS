@@ -24,8 +24,8 @@ public class PlaceController {
     }
 
     @GetMapping("/{category}")
-    public ResponseEntity<List<PlaceDto>> gettAllPublicPlacesFromCategory(@PathVariable String category) {
-        var placeRespons = placeService.gettAllPublicPlacesFromCategory(category);
+    public ResponseEntity<List<PlaceDto>> getAllPublicPlacesFromCategory(@PathVariable String category) {
+        var placeRespons = placeService.getAllPublicPlacesFromCategory(category);
         if (placeRespons.isEmpty())
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok().body(placeRespons);

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PlaceRepository extends ListCrudRepository<Place, Integer> {
 
-    List<Place> getAllByStatusAndCategoryName(String status, String category);
+    List<Place> findPlaceByStatusAndCategoryName(String status, String category);
 
-    List<Place> getAllByStatus(String status);
+    List<Place> findByStatus(String status);
 }

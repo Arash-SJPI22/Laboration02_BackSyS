@@ -28,14 +28,14 @@ public class PlaceService {
     }
 
     public List<PlaceDto> getAllPlacesByStatus(String status) {
-        return placeRepository.getAllByStatus(status)
+        return placeRepository.findByStatus(status)
                 .stream()
                 .map(PlaceDto::new)
                 .toList();
     }
 
-  public List<PlaceDto> gettAllPublicPlacesFromCategory(String category) {
-        return placeRepository.getAllByStatusAndCategoryName("public", category)
+  public List<PlaceDto> getAllPublicPlacesFromCategory(String category) {
+        return placeRepository.findPlaceByStatusAndCategoryName("public", category)
                 .stream()
                 .map(PlaceDto::new)
                 .toList();

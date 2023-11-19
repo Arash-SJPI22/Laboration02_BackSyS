@@ -1,4 +1,4 @@
-package lernia.backosys.laboration02;
+package lernia.backosys.laboration02.config;
 
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.crs.CoordinateReferenceSystem;
