@@ -1,4 +1,4 @@
-package lernia.backosys.laboration02;
+package lernia.backosys.laboration02.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

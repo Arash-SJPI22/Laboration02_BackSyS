@@ -1,5 +1,8 @@
-package lernia.backosys.laboration02;
+package lernia.backosys.laboration02.service;
 
+import lernia.backosys.laboration02.entities.User;
+import lernia.backosys.laboration02.entities.UserDto;
+import lernia.backosys.laboration02.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,7 +16,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    Optional<UserDto> getOneUserByName(String name) {
+    public Optional<UserDto> getOneUserByName(String name) {
         return mapUserDto(Optional.ofNullable(userRepository.findUserByName(name)));
     }
 

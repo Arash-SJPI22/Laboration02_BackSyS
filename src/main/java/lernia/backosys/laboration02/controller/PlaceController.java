@@ -1,5 +1,8 @@
-package lernia.backosys.laboration02;
+package lernia.backosys.laboration02.controller;
 
+import lernia.backosys.laboration02.entities.Coordination;
+import lernia.backosys.laboration02.entities.PlaceDto;
+import lernia.backosys.laboration02.service.PlaceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +25,7 @@ public class PlaceController {
 
     @GetMapping("/{category}")
     public ResponseEntity<List<PlaceDto>> gettAllPublicPlacesFromCategory(@PathVariable String category) {
-        var placeRespons = placeService.getAllPlacesByCategory(category);
+        var placeRespons = placeService.gettAllPublicPlacesFromCategory(category);
         if (placeRespons.isEmpty())
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok().body(placeRespons);

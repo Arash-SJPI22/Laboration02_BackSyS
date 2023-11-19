@@ -1,4 +1,4 @@
-package lernia.backosys.laboration02;
+package lernia.backosys.laboration02.entities;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 public record CategoryDto(@NotNull @Size(max = 255) @NotEmpty @NotBlank String name, @Size(max = 255) String symbol,
                           @Size(max = 255) String description) implements Serializable {
-    CategoryDto(Category category) {
+    public CategoryDto(Category category) {
         this(category.getName(), category.getSymbol(), category.getDescription());
     }
 }

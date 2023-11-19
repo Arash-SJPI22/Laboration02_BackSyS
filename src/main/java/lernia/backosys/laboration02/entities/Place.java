@@ -1,9 +1,10 @@
-package lernia.backosys.laboration02;
+package lernia.backosys.laboration02.entities;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lernia.backosys.laboration02.serializer.Point2DSerializer;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
 

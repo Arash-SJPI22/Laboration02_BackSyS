@@ -1,5 +1,8 @@
-package lernia.backosys.laboration02;
+package lernia.backosys.laboration02.controller;
 
+import lernia.backosys.laboration02.entities.Category;
+import lernia.backosys.laboration02.entities.CategoryDto;
+import lernia.backosys.laboration02.service.CategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

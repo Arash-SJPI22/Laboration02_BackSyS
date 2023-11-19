@@ -1,5 +1,8 @@
-package lernia.backosys.laboration02;
+package lernia.backosys.laboration02.service;
 
+import lernia.backosys.laboration02.entities.Category;
+import lernia.backosys.laboration02.entities.CategoryDto;
+import lernia.backosys.laboration02.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,14 +17,14 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    List<CategoryDto> getAll() {
+    public List<CategoryDto> getAll() {
         return categoryRepository.findAll()
                 .stream()
                 .map(CategoryDto::new)
                 .toList();
     }
 
-    Optional<CategoryDto> getOneCategoryByName(String category) {
+    public Optional<CategoryDto> getOneCategoryByName(String category) {
         return mapCategoryDto(Optional.ofNullable(categoryRepository.findCategoryByName(category)));
     }
 

@@ -1,5 +1,6 @@
-package lernia.backosys.laboration02;
+package lernia.backosys.laboration02.controller;
 
+import lernia.backosys.laboration02.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

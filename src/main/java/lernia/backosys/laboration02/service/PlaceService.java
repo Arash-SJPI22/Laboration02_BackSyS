@@ -1,5 +1,9 @@
-package lernia.backosys.laboration02;
+package lernia.backosys.laboration02.service;
 
+import lernia.backosys.laboration02.entities.*;
+import lernia.backosys.laboration02.repository.CategoryRepository;
+import lernia.backosys.laboration02.repository.PlaceRepository;
+import lernia.backosys.laboration02.repository.UserRepository;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Geometries;
 import org.springframework.stereotype.Service;
@@ -23,14 +27,14 @@ public class PlaceService {
         this.userRepository = userRepository;
     }
 
-    List<PlaceDto> getAllPlacesByStatus(String status) {
+    public List<PlaceDto> getAllPlacesByStatus(String status) {
         return placeRepository.getAllByStatus(status)
                 .stream()
                 .map(PlaceDto::new)
                 .toList();
     }
 
-  List<PlaceDto> getAllPlacesByCategory(String category) {
+  public List<PlaceDto> gettAllPublicPlacesFromCategory(String category) {
         return placeRepository.getAllByStatusAndCategoryName("public", category)
                 .stream()
                 .map(PlaceDto::new)
