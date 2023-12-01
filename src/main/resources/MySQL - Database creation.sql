@@ -55,7 +55,7 @@ VALUES
     ('Orsa Blåbär', (SELECT id FROM category WHERE category.name = 'Blåbär'), (SELECT id FROM user WHERE user.name = 'Kråkan'), 'private', 'Bästa stället, super hemligt!', ST_GeomFromText('POINT(61.194311 14.771633)', 4326)),
     ('Hellvetesfallet', (SELECT id FROM category WHERE category.name = 'Turistmål'), (SELECT id FROM user WHERE user.name = 'Bengan'), 'public', 'Fintställe, anpassat till personer med funktionsvariationer', ST_GeomFromText('POINT(61.203367 14.736786)', 4326)),
     ('Stor Stupet', (SELECT id FROM category WHERE category.name = 'Turistmål'), (SELECT id FROM user WHERE user.name = 'Bengan'), 'public', 'Fintställe, anpassat till personer med funktionsvariationer', ST_GeomFromText('POINT(61.209774 14.737988)', 4326)),
-    ('Stenslips museét', (SELECT id FROM category WHERE category.name = 'Turistmål'), (SELECT id FROM user WHERE user.name = 'Burre'), 'public', 'Helt ok, ganska ok mat', ST_GeomFromText('POINT(61.184094 14.771461)', 4326)),
+    ('Stenslips museét', (SELECT id FROM category WHERE category.name = 'Turistmål'), (SELECT id FROM user WHERE user.name = 'Burre'), 'private', 'Helt ok, ganska ok mat', ST_GeomFromText('POINT(61.184094 14.771461)', 4326)),
     ('Amores Pizzeria', (SELECT id FROM category WHERE category.name = 'Snabbmat'), (SELECT id FROM user WHERE user.name = 'Burre'), 'public', 'Har vegan pizza och kebab, bra ställe!', ST_GeomFromText('POINT(61.118703 14.619348)', 4326)),
     ('Max', (SELECT id FROM category WHERE category.name = 'Snabbmat'), (SELECT id FROM user WHERE user.name = 'Mackan'), 'public', 'Max är Max', ST_GeomFromText('POINT(61.006615 14.605186)', 4326));
 
