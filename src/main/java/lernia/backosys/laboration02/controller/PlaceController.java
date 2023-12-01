@@ -1,9 +1,14 @@
 package lernia.backosys.laboration02.controller;
 
-import lernia.backosys.laboration02.entities.Coordination;
-import lernia.backosys.laboration02.entities.PlaceDto;
+import jakarta.validation.Valid;
+import lernia.backosys.laboration02.entities.place.PlaceDto;
+import lernia.backosys.laboration02.entities.place.PlaceServiceDto;
+import lernia.backosys.laboration02.entities.place.PlaceServiceDtoPut;
 import lernia.backosys.laboration02.service.PlaceService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,26 +24,35 @@ public class PlaceController {
     }
 
     @GetMapping
-    public List<PlaceDto> getAllPublicPlaces() {
-        return placeService.getAllPlacesByStatus("public");
+    public ResponseEntity<List<PlaceDto>> getPlace(@RequestParam(required = false) String category, @RequestParam(required = false) Boolean onlyMyPlaces) {
+
+        if (onlyMyPlaces == null)
+            onlyMyPlaces = Boolean.FALSE;
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if ((authentication instanceof AnonymousAuthenticationToken) && onlyMyPlaces.equals(Boolean.TRUE))
+            return ResponseEntity.status(405).build();
+
+        return placeService.getPlace(category, onlyMyPlaces);
     }
 
-    @GetMapping("/{category}")
-    public ResponseEntity<List<PlaceDto>> getAllPublicPlacesFromCategory(@PathVariable String category) {
-        var placeRespons = placeService.getAllPublicPlacesFromCategory(category);
-        if (placeRespons.isEmpty())
-            return ResponseEntity.notFound().build();
-        return ResponseEntity.ok().body(placeRespons);
+    @GetMapping("/{id}")
+    public ResponseEntity<List<PlaceDto>> getOnePlaceById(@PathVariable int id, @RequestParam(required = false) Integer radius) {
+        return placeService.getOnePlaceById(id, radius);
     }
 
     @PostMapping
-    public ResponseEntity<Void> createNewPlace(@RequestBody Coordination coordination){
-        var place = placeService.createNewPlace(coordination);
-        if (place.isPresent())
-            return ResponseEntity.ok().build();
-        return ResponseEntity.badRequest().build();
+    public ResponseEntity<PlaceDto> createNewPlace(@Valid @RequestBody PlaceServiceDto placeServiceDto){
+        return placeService.createNewPlace(placeServiceDto);
     }
-    // @PatchMapping
 
-    // @DeleteMapping
+    @PutMapping
+    public ResponseEntity<PlaceDto> putPlace(@Valid @RequestBody PlaceServiceDtoPut placeServiceDtoPut) {
+        return placeService.putPlace(placeServiceDtoPut);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<PlaceDto> deletePlace(@PathVariable int id) {
+        return placeService.deletePlace(id);
+    }
 }

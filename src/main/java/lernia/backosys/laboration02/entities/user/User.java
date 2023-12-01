@@ -1,4 +1,4 @@
-package lernia.backosys.laboration02.entities;
+package lernia.backosys.laboration02.entities.user;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -22,10 +22,6 @@ public class User {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {

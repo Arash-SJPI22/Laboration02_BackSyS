@@ -1,9 +1,11 @@
-package lernia.backosys.laboration02.entities;
+package lernia.backosys.laboration02.entities.place;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lernia.backosys.laboration02.entities.user.User;
+import lernia.backosys.laboration02.entities.category.Category;
 import lernia.backosys.laboration02.serializer.Point2DSerializer;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
@@ -66,10 +68,6 @@ public class Place {
     public Integer getId() {
         return id;
     }
-
-    /*public void setId(Integer id) {
-        this.id = id;
-    }*/
 
     public String getName() {
         return name;

@@ -1,4 +1,4 @@
-package lernia.backosys.laboration02.entities;
+package lernia.backosys.laboration02.entities.category;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -17,7 +17,7 @@ public class Category {
 
     @Size(max = 255)
     @NotNull
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Size(max = 255)
@@ -30,10 +30,6 @@ public class Category {
 
     public Integer getId() {
         return id;
-    }
-
-   public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {

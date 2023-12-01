@@ -10,10 +10,10 @@ import java.io.IOException;
 
 public class Point2DSerializer extends JsonSerializer<Point<G2D>> {
     @Override
-    public void serialize(Point<G2D> g2DPoint, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+    public void serialize(Point<G2D> G2DPoint, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
-            jsonGenerator.writeNumberField("lat", g2DPoint.getPosition().getCoordinate(1));
-            jsonGenerator.writeNumberField("lng", g2DPoint.getPosition().getCoordinate(0));
+            jsonGenerator.writeNumberField("lat", G2DPoint.getPosition().getCoordinate(1));
+            jsonGenerator.writeNumberField("lng", G2DPoint.getPosition().getCoordinate(0));
         jsonGenerator.writeEndObject();
     }
 }

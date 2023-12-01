@@ -1,7 +1,7 @@
 package lernia.backosys.laboration02.controller;
 
-import lernia.backosys.laboration02.entities.Category;
-import lernia.backosys.laboration02.entities.CategoryDto;
+import jakarta.validation.Valid;
+import lernia.backosys.laboration02.entities.category.CategoryDto;
 import lernia.backosys.laboration02.service.CategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,24 +18,13 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping
-        public List<CategoryDto> getAll(){
-            return categoryService.getAll();
-    }
-
-    @GetMapping("/{category}")
-    public ResponseEntity<CategoryDto> getOneCategoryByName(@PathVariable String category){
-        var categoryRespons = categoryService.getOneCategoryByName(category);
-        if (categoryRespons.isPresent())
-            return ResponseEntity.ok().body(categoryRespons.get());
-        return ResponseEntity.notFound().build();
+   @GetMapping
+    public ResponseEntity<List<CategoryDto>> getCategories(@RequestParam(required = false) String category) {
+        return categoryService.getCategories(category);
     }
 
     @PostMapping
-    public ResponseEntity<Void> createNewCategory(@RequestBody Category category) {
-        var cat = categoryService.createNewCategory(category);
-        if (cat.isPresent())
-            return ResponseEntity.ok().build();
-        return ResponseEntity.badRequest().build();
+    public ResponseEntity<CategoryDto> createNewCategory(@Valid @RequestBody CategoryDto categoryDto) {
+        return categoryService.createNewCategory(categoryDto);
     }
 }

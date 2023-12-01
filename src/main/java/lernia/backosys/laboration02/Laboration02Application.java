@@ -9,7 +9,4 @@ public class Laboration02Application {
     public static void main(String[] args) {
         SpringApplication.run(Laboration02Application.class, args);
     }
-
-
-
 }

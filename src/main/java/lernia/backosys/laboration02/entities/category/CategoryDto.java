@@ -1,4 +1,4 @@
-package lernia.backosys.laboration02.entities;
+package lernia.backosys.laboration02.entities.category;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

@@ -1,4 +1,4 @@
-package lernia.backosys.laboration02.entities;
+package lernia.backosys.laboration02.entities.user;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
