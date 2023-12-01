@@ -3,6 +3,7 @@ package lernia.backosys.laboration02.service;
 import jakarta.annotation.Nullable;
 import lernia.backosys.laboration02.entities.category.Category;
 import lernia.backosys.laboration02.entities.category.CategoryDto;
+import lernia.backosys.laboration02.exceptions.ResourceNotFoundException;
 import lernia.backosys.laboration02.repository.CategoryRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,11 +20,13 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    private ResponseEntity<List<CategoryDto>> sendEmptyResponsIfEmpty(List<CategoryDto> categoryRespons) {
+
+    private ResponseEntity<List<CategoryDto>> sendEmptyResponsIfEmpty(List<CategoryDto> categoryRespons, String id) {
         if (categoryRespons.isEmpty())
-            return ResponseEntity.notFound().build();
+            throw new ResourceNotFoundException("Category: " + id + " dosen't exist!", id);
         return ResponseEntity.ok().body(categoryRespons);
     }
+
 
     public ResponseEntity<List<CategoryDto>> getCategories(@Nullable String category){
 
@@ -31,20 +34,22 @@ public class CategoryService {
             return sendEmptyResponsIfEmpty(categoryRepository.findAll()
                     .stream()
                     .map(CategoryDto::new)
-                    .toList());
+                    .toList(), category);
         }
 
         return sendEmptyResponsIfEmpty(mapCategoryDto(
                 Optional.ofNullable(categoryRepository.findCategoryByName(category)))
                 .stream().
-                toList());
+                toList(), category);
     }
+
 
     static Optional<CategoryDto> mapCategoryDto(Optional<Category> category) {
         if (category.isEmpty())
             return Optional.empty();
         return Optional.of(new CategoryDto(category.get()));
     }
+
 
     public ResponseEntity<CategoryDto> createNewCategory(CategoryDto categoryDto) {
         if (categoryRepository.findCategoryByName(categoryDto.name()) != null)
@@ -58,7 +63,7 @@ public class CategoryService {
 
         categoryRepository.save(category);
 
-        return ResponseEntity.ok().body(new CategoryDto(category));
+        return ResponseEntity.status(201).body(new CategoryDto(category));
     }
 
     public Category findCategoryByName(String category) {

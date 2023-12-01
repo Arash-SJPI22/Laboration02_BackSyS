@@ -31,7 +31,7 @@ public class PlaceController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if ((authentication instanceof AnonymousAuthenticationToken) && onlyMyPlaces.equals(Boolean.TRUE))
-            return ResponseEntity.status(405).build();
+            return ResponseEntity.status(401).build();
 
         return placeService.getPlace(category, onlyMyPlaces);
     }
