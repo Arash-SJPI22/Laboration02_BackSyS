@@ -18,7 +18,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.List;
 
 import static org.geolatte.geom.crs.CoordinateReferenceSystems.WGS84;
@@ -143,8 +142,6 @@ public class PlaceService {
         place.setCategory(category);
         place.setUser(user);
         place.setStatus(placeServiceDto.status().toString());
-        place.setCreated(Instant.now());
-        place.setUpdated(Instant.now());
         place.setDescription(placeServiceDto.description());
         place.setCoordinates(geo);
 
@@ -178,8 +175,6 @@ public class PlaceService {
         place.setCategory(category);
         place.setUser(user);
         place.setStatus(placeServiceDtoPut.status().toString());
-        place.setCreated(place.getCreated());
-        place.setUpdated(Instant.now());
         place.setDescription(placeServiceDtoPut.description());
         place.setCoordinates(geo);
 

@@ -9,6 +9,8 @@ import lernia.backosys.laboration02.entities.category.Category;
 import lernia.backosys.laboration02.serializer.Point2DSerializer;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.time.Instant;
@@ -43,10 +45,12 @@ public class Place {
     @Column(name = "status", nullable = false)
     private String status;
 
-    @Column(name = "created")
+    @CreationTimestamp
+    @Column(name = "created", nullable = false, updatable = false)
     private Instant created;
 
-    @Column(name = "updated")
+    @UpdateTimestamp
+    @Column(name = "updated", nullable = false)
     private Instant updated;
 
     @Size(max = 255)
